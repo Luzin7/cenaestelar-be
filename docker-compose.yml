@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: cenaestelar
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: pg
+      POSTGRES_DB: cenaestelar
+      PGDATA: /data/pgdata
+    volumes:
+      - .data/pg:/data/postgres

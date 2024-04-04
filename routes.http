@@ -1,0 +1,47 @@
+### CADASTRAR USUARIO
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Filme poggers2",
+  "poster": "https://www.google.com.br",
+  "media": "https://www.google.com.br",
+  "banner": "https://www.google.com.br",
+  "rating": "4.5",
+  "shortDescription": "descrissao curta",
+  "description": "descissao longa e massa e pa y bra",
+  "releaseDate": "2055",
+  "genres": [
+    "ryan gosling",
+    "literalmente eu"
+  ],
+  "cast": [
+    "ryan gosling",
+    "literalmente eu"
+  ],
+  "directors": [
+    "ryan gosling",
+    "literalmente eu"
+  ]
+}
+
+#### ALL MOVIES
+GET http://localhost:3000/movies
+
+#### MOVIE BY ID
+GET http://localhost:3000/movie/652159c6-aed1-48b8-90ae-21b318c562ba
+Content-Type: application/json
+
+#### ATUALIZA DADOS USUARIO
+PUT http://localhost:3000/usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjk4ODA1MDE5LCJleHAiOjE2OTg4NDEwMTl9.Nd2M-SfZWJbaH75gAq4SQ9Qenv5vBMxXYlkA9Nv_en4
+Content-Type: application/json
+
+{
+  "nome": "Samuel",
+  "email": "Samumu@sim.com",
+  "senha": "12345678"
+}
+
+#### LISTAR CATEGORIAS
+GET http://localhost:3000/categoria

@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Movies {
+  id               String   @id @unique @default(uuid())
+  title            String
+  poster           String
+  media            String
+  banner           String
+  shortDescription String   @map("short_description")
+  description      String
+  rating           String
+  releaseDate      String   @map("release_date")
+  genres           String[]
+  cast             String[]
+  directors        String[]
+
+  @@map("movies")
+}
+
+model Series {
+  id               String   @id @unique @default(uuid())
+  title            String
+  poster           String
+  media            String
+  banner           String
+  shortDescription String   @map("short_description")
+  description      String
+  rating           String
+  releaseDate      String   @map("release_date")
+  genres           String[]
+  cast             String[]
+  directors        String[]
+
+  @@map("series")
+}
