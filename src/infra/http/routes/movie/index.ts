@@ -1,3 +1,4 @@
+import { DeleteMovieById } from '@infra/http/controllers/movie/deleteMovie/deleteMovie.controller';
 import { Router } from 'express';
 import { CreateMovie } from '../../controllers/movie/createMovie/createMovie.controller';
 import { FindAllMovies } from '../../controllers/movie/findAllMovies/findAll.useCase';
@@ -8,6 +9,7 @@ const createMovieController = new CreateMovie();
 const findAllMoviesController = new FindAllMovies();
 const findMovieByIdController = new FindMovieById();
 const findMovieByTitleController = new FindMovieByTitle();
+const deleteMovieByIdController = new DeleteMovieById();
 
 export const movieRoutes = Router();
 
@@ -22,3 +24,4 @@ movieRoutes.get('/movies', (req, res) => {
 
 movieRoutes.get('/movie/:id', findMovieByIdController.handle);
 movieRoutes.post('/movies', createMovieController.handle);
+movieRoutes.delete('/movie/:id', deleteMovieByIdController.handle);

@@ -1,5 +1,4 @@
 import { Either } from '@shared/core/errors/Either';
-import { ErrorPresenter } from '@shared/presenters/Error';
 import { OutputMovieDto } from '../../repositories/contracts/movie.dto';
 
 export type InputCreateMovieDto = {
@@ -17,7 +16,7 @@ export type InputCreateMovieDto = {
 };
 
 export type OutputCreateMovieDto = Either<
-  ErrorPresenter,
+  null,
   {
     movie: OutputMovieDto;
   }

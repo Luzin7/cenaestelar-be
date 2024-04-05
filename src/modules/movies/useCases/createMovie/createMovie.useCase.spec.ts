@@ -27,25 +27,4 @@ describe('Create movie', () => {
     expect(moviesRepository.movies[0]).toHaveProperty('title', movie.title);
     expect(moviesRepository.movies[0].id).toBeTypeOf('string');
   });
-
-  it('should not create a new movie', async () => {
-    const movie: InputCreateMovieDto = {
-      title: '',
-      poster: 'poster',
-      media: 'media',
-      banner: 'banner',
-      rating: 'rating',
-      shortDescription: 'shortDescription',
-      description: 'description',
-      releaseDate: 'releaseDate',
-      genres: ['genres'],
-      cast: ['cast'],
-      directors: ['directors'],
-    };
-
-    const response = await sut.execute(movie);
-
-    expect(response.isLeft()).toBe(true);
-    expect(response.isRight()).toBe(false);
-  });
 });

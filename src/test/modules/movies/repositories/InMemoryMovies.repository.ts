@@ -3,7 +3,7 @@ import { MoviesRepository } from '@modules/movies/repositories/contracts/Movies.
 import { OutputMovieDto } from '@modules/movies/repositories/contracts/movie.dto';
 
 export class InMemoryMoviesRepository extends MoviesRepository {
-  movies: Movie[] = [];
+  movies: OutputMovieDto[] = [];
 
   async create(movie: Movie): Promise<void> {
     this.movies.push(movie);
@@ -15,8 +15,6 @@ export class InMemoryMoviesRepository extends MoviesRepository {
 
   async findById(id: string): Promise<OutputMovieDto | null> {
     const movie = this.movies.find((movie) => movie.id === id);
-
-    console.log({ movie });
 
     if (!movie) {
       return null;
@@ -56,6 +54,12 @@ export class InMemoryMoviesRepository extends MoviesRepository {
   }
 
   async delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+    const movieIndex = this.movies.findIndex((movie) => movie.id === id);
+
+    if (movieIndex === -1) {
+      return;
+    }
+
+    this.movies.splice(movieIndex, 1);
   }
 }

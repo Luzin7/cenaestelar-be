@@ -7,9 +7,33 @@ import { createMovieBodySchema } from 'src/schemas/movie/createMovie.schema';
 
 export class CreateMovie implements Controller {
   async handle(req: Request, res: Response): Promise<Response> {
-    const requisitionContent = createMovieBodySchema.parse(req.body);
+    const {
+      banner,
+      cast,
+      description,
+      directors,
+      genres,
+      media,
+      poster,
+      rating,
+      releaseDate,
+      shortDescription,
+      title,
+    } = createMovieBodySchema.parse(req.body);
 
-    const response = await createMovieUseCase.execute(requisitionContent);
+    const response = await createMovieUseCase.execute({
+      banner,
+      cast,
+      description,
+      directors,
+      genres,
+      media,
+      poster,
+      rating,
+      releaseDate,
+      shortDescription,
+      title,
+    });
 
     if (response.isLeft()) {
       const error = response.value;
