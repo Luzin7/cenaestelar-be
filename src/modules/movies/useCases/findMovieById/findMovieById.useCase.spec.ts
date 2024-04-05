@@ -7,8 +7,8 @@ import { FindMovieById } from './findMovieById.useCase';
 describe('Find Movie By Id', () => {
   const moviesRepository = new InMemoryMoviesRepository();
   const sut = new FindMovieById(moviesRepository);
-  setTimeout(() => {
-    it('should find movie by id', async () => {
+  it('should find movie by id', () => {
+    setTimeout(async () => {
       const movieId: InputFindMovieByIdDto = {
         id: moviesRepository.movies[0].id.toString(),
       };
@@ -17,6 +17,6 @@ describe('Find Movie By Id', () => {
 
       expect(response.isRight()).toBe(true);
       expect(response.value).toBeInstanceOf(Movie);
-    });
-  }, 5000);
+    }, 5000);
+  });
 });
