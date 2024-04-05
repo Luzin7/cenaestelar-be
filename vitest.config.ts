@@ -8,7 +8,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@modules/': '/src/module/',
+      '@modules/': '/src/modules/',
       '@shared/': '/src/shared/',
       '@test/': '/src/test/',
       '@env/': '/src/env/',
