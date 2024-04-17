@@ -3,9 +3,9 @@ import { OutputMovieDto } from '../../repositories/contracts/movie.dto';
 
 export type InputCreateMovieDto = {
   title: string;
-  poster: string | boolean;
-  media: string | boolean;
-  banner: string | boolean;
+  poster: string | boolean | null;
+  media: string | boolean | null;
+  banner: string | boolean | null;
   rating: string;
   shortDescription: string;
   description: string;

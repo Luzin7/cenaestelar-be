@@ -14,7 +14,7 @@ export const createMovieBodySchema = z.object({
   cast: z.array(z.string()),
   poster: z.string(),
   media: z.string().or(z.boolean()),
-  banner: z.string(),
+  banner: z.string().or(z.null()),
   shortDescription: z.string(),
   description: z.string(),
 });
