@@ -1,23 +1,22 @@
 import { Either } from '@shared/core/errors/Either';
-import { ErrorPresenter } from '@shared/presenters/Error';
 import { OutputMovieDto } from '../../repositories/contracts/movie.dto';
 
 export type InputCreateMovieDto = {
   title: string;
-  poster: string;
-  media: string;
-  banner: string;
+  poster: string | boolean;
+  media: string | boolean;
+  banner: string | boolean;
   rating: string;
   shortDescription: string;
   description: string;
   releaseDate: string;
-  genres: string[];
+  genres: { id: number; name: string }[];
   cast: string[];
   directors: string[];
 };
 
 export type OutputCreateMovieDto = Either<
-  ErrorPresenter,
+  null,
   {
     movie: OutputMovieDto;
   }

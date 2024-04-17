@@ -4,7 +4,7 @@ Ainda to bolando a desc
 
 ## Documentação da API
 
-#### Retorna todos os itens
+### Retorna todos os itens
 
 ```http
   GET /movies
@@ -14,7 +14,7 @@ Ainda to bolando a desc
   GET /series
 ```
 
-#### Procurar conteúdos por título
+### Procurar conteúdos por título
 
 ```http
   GET /{contentType}?query={contentTitle}
@@ -26,28 +26,105 @@ Ainda to bolando a desc
 | :------ | :------- | :----------------------------------------------------------------- |
 | `Query` | `string` | **Obrigatório**. O título do conteúdo que o usuário quer encontrar |
 
-#### Filtrar conteúdos por detalhes
+### Filtrar conteúdo por gênero
 
 ```http
-  GET /{contentType}?filter={filterType}
+  GET /{contentType}?filter=genres
 
-  ex: /movies?filter=cast
+  ex: /movies?filter=genres
 ```
 
-conteúdo:
+conteúdo do corpo:
 
 ```json
 ex:
 {
-    "filter":  "Ryan Gosling"
+  "genres": ["ryan", "gosling"],
 }
 ```
 
-possíveis métodos de filtro:
-rating, genre, director, releaseDate.
+| Método | Tipo   | Descrição                                              |
+| :----- | :----- | :----------------------------------------------------- |
+| `Body` | `JSON` | **Obrigatório**. O gereno do conteúdo a ser procurado. |
 
-| Método  | Tipo     | Descrição                                                                 |
-| :------ | :------- | :------------------------------------------------------------------------ |
-| `Query` | `string` | **Obrigatório**. O tipo de fitro do conteúdo que o usuário quer encontrar |
-| Método  | Tipo     | Descrição                                                                 |
-| `Body`  | `string` | **Obrigatório**. O valor pelo qual os conteúdos serão filtrados           |
+### Filtrar conteúdo por data de lançamento
+
+```http
+  GET /{contentType}?filter=release
+
+  ex: /movies?filter=release
+```
+
+conteúdo do corpo:
+
+```json
+ex:
+{
+  "release": "2222",
+}
+```
+
+| Método | Tipo   | Descrição                                              |
+| :----- | :----- | :----------------------------------------------------- |
+| `Body` | `JSON` | **Obrigatório**. O gereno do conteúdo a ser procurado. |
+
+### Filtrar conteúdos por ID
+
+```http
+  GET /{contentType}/id
+
+  ex: /movies/ewUbr40sddWoKps2
+```
+
+| Método   | Tipo     | Descrição                                                      |
+| :------- | :------- | :------------------------------------------------------------- |
+| `Params` | `string` | **Obrigatório**. O ID do conteúdo que o usuário quer encontrar |
+
+### Adicionar um novo conteúdo
+
+```http
+  POST /movies
+
+  ex: /movies
+```
+
+conteúdo do corpo:
+
+```json
+ex:
+{
+  "title": "Filme Show",
+  "poster": "https://images.alphacoders.com/808/808916.jpg",
+  "media": "https://images.alphacoders.com/808/808916.jpg",
+  "banner": "https://images.alphacoders.com/808/808916.jpg",
+  "rating": "4.5",
+  "shortDescription": "Tagline show do filme.",
+  "description": "Crítica do filme que claramente vai fazer toda a diferença na vida de quem acessar o site.",
+  "releaseDate": "01-01-0001",
+  "genres": ["ryan gosling"],
+  "cast": [
+    "ryan gosling",
+    "literalmente eu"
+  ],
+  "directors": [
+    "ryan gosling",
+    "literalmente eu"
+  ]
+}
+```
+
+| Método | Tipo   | Descrição                                                                   |
+| :----- | :----- | :-------------------------------------------------------------------------- |
+| `Body` | `JSON` | **Obrigatório**. O conteúdo do filme para ser adicionado ao banco de dados. |
+
+### Deletar conteúdo por ID
+
+```http
+  DELETE /{contentType}/id
+
+  ex: /movies/ewUbr40sWoKps221
+```
+
+| Método   | Tipo     | Descrição                                           |
+| :------- | :------- | :-------------------------------------------------- |
+| `Params` | `string` | **Obrigatório**. O ID do conteúdo que será deletado |

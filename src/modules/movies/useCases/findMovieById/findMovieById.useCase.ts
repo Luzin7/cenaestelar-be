@@ -1,6 +1,6 @@
 import { left, right } from '@shared/core/errors/Either';
 import { UseCase } from '@shared/core/modules/UseCase';
-import { MovieNotFoundError } from '../../errors/movieNotFound/movieNotFound.error';
+import { MovieNotFoundError } from '../../errors/movieNotFound.error';
 import { MoviesRepository } from '../../repositories/contracts/Movies.repository';
 import {
   InputFindMovieByIdDto,

@@ -1,6 +1,5 @@
-import { left, right } from '@shared/core/errors/Either';
+import { right } from '@shared/core/errors/Either';
 import { UseCase } from '@shared/core/modules/UseCase';
-import { ErrorPresenter } from '@shared/presenters/Error';
 import { Movie } from '../../entities/Movie';
 import { MoviesRepository } from '../../repositories/contracts/Movies.repository';
 import { InputCreateMovieDto, OutputCreateMovieDto } from './createMovie.dto';
@@ -13,23 +12,31 @@ export class CreateMovie extends UseCase<
     super();
   }
 
-  async execute(req: InputCreateMovieDto): Promise<OutputCreateMovieDto> {
-    if (Object.values(req).some((value) => value === '')) {
-      return left(new ErrorPresenter());
-    }
-
+  async execute({
+    banner,
+    cast,
+    description,
+    directors,
+    genres,
+    media,
+    poster,
+    rating,
+    releaseDate,
+    shortDescription,
+    title,
+  }: InputCreateMovieDto): Promise<OutputCreateMovieDto> {
     const movie = Movie.create({
-      title: req.title,
-      poster: req.poster,
-      media: req.media,
-      banner: req.banner,
-      rating: req.rating,
-      shortDescription: req.shortDescription,
-      description: req.description,
-      releaseDate: req.releaseDate,
-      genres: req.genres,
-      cast: req.cast,
-      directors: req.directors,
+      title,
+      poster,
+      media,
+      banner,
+      rating,
+      shortDescription,
+      description,
+      releaseDate,
+      genres,
+      cast,
+      directors,
     });
 
     await this.moviesRepository.create(movie);

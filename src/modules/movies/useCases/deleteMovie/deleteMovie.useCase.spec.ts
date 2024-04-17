@@ -1,13 +1,13 @@
+import { Movie } from '@modules/movies/entities/Movie';
 import { InMemoryMoviesRepository } from '@test/modules/movies/repositories/InMemoryMovies.repository';
 import { describe, expect, it } from 'vitest';
-import { Movie } from '../../entities/Movie';
-import { InputFindMovieByIdDto } from './findMovieById.dto';
-import { FindMovieById } from './findMovieById.useCase';
+import { DeleteMovie } from './deleteMovie.useCase';
+import { InputDeleteMovieDto } from './deleteMovie.useCase.dto';
 
-describe('Find Movie By Id', () => {
+describe('Delete movie by id', () => {
   const moviesRepository = new InMemoryMoviesRepository();
-  const sut = new FindMovieById(moviesRepository);
-  it('should find movie by id', async () => {
+  const sut = new DeleteMovie(moviesRepository);
+  it('should delete the movie by id', async () => {
     const newMovie = Movie.create({
       title: 'test title',
       poster: 'test poster',
@@ -23,14 +23,9 @@ describe('Find Movie By Id', () => {
     });
 
     await moviesRepository.create(newMovie);
+    const movieId: InputDeleteMovieDto = { id: moviesRepository.movies[0].id };
+    const response = await sut.execute(movieId);
 
-    const movieId: InputFindMovieByIdDto = {
-      id: moviesRepository.movies[0].id,
-    };
-
-    const response = await sut.execute({ id: movieId.id });
-
-    expect(response.isRight()).toBeTruthy();
-    expect(response.isLeft()).toBeFalsy();
+    expect(response.isRight()).toBe(true);
   });
 });

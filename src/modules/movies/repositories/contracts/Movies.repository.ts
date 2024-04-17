@@ -6,7 +6,6 @@ export abstract class MoviesRepository {
   abstract findAll(): Promise<OutputMovieDto[]>;
   abstract findById(id: string): Promise<OutputMovieDto | null>;
   abstract findByGenre(genres: string[]): Promise<OutputMovieDto[]>;
-  abstract findByDirector(directors: string[]): Promise<OutputMovieDto[]>;
   abstract findByTitle(title: string): Promise<OutputMovieDto[] | null>;
   abstract findByReleaseDate(releaseDate: string): Promise<OutputMovieDto[]>;
   abstract findByRating(rating: string): Promise<OutputMovieDto[]>;

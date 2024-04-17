@@ -44,21 +44,6 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
     return movies.map(MoviesPrismaMapper.toEntity);
   }
 
-  async findByDirector(directors: string[]): Promise<OutputMovieDto[]> {
-    const movies = await prisma.movies.findMany({
-      where: {
-        directors: {
-          hasSome: directors,
-        },
-      },
-      orderBy: {
-        genres: 'desc',
-      },
-    });
-
-    return movies.map(MoviesPrismaMapper.toEntity);
-  }
-
   async findByTitle(title: string): Promise<OutputMovieDto[] | null> {
     const movies = await prisma.movies.findMany({
       where: {
