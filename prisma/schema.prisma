@@ -10,9 +10,9 @@ datasource db {
 model Movies {
   id               String   @id @unique @default(uuid())
   title            String
-  poster           String
+  poster           Json
   media            Json
-  banner           String
+  banner           Json
   shortDescription String   @map("short_description")
   description      String
   rating           String
