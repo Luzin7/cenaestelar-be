@@ -137,3 +137,6 @@ bun.*
 
 # docker
 .data*
+
+#npm-package-lock
+package-lock.json

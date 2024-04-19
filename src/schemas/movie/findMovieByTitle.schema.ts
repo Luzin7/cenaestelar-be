@@ -1,5 +1,5 @@
 import { z } from 'zod';
 
-export const findMovieByIdQuerySchema = z.object({
+export const findMovieByTitleQuerySchema = z.object({
   title: z.string(),
 });

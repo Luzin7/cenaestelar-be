@@ -5,7 +5,7 @@ import { OutputMovieDto } from '@modules/movies/repositories/contracts/movie.dto
 export class InMemoryMoviesRepository extends MoviesRepository {
   movies: OutputMovieDto[] = [];
 
-  async create(movie: Movie): Promise<void> {
+  async create(movie: OutputMovieDto): Promise<void> {
     this.movies.push(movie);
   }
 
@@ -45,8 +45,14 @@ export class InMemoryMoviesRepository extends MoviesRepository {
     throw new Error('Method not implemented.');
   }
 
-  async findByRating(rating: string): Promise<OutputMovieDto[]> {
-    throw new Error('Method not implemented.');
+  async findByRating(rating: string): Promise<OutputMovieDto[] | null> {
+    const movies = this.movies.filter((movie) => movie.rating >= rating);
+
+    if (movies.length === 0) {
+      return null;
+    }
+
+    return movies;
   }
 
   async update(movie: Movie): Promise<void> {
