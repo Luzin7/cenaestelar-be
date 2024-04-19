@@ -4,6 +4,7 @@ import { DeleteMovie } from '@modules/movies/useCases/deleteMovie/deleteMovie.us
 import { FindAllMovies } from '@modules/movies/useCases/findAllMovies/findAll.useCase';
 import { FindMovieById } from '@modules/movies/useCases/findMovieById/findMovieById.useCase';
 import { FindMovieByTitle } from '@modules/movies/useCases/findMovieByTitle/findMovieByTitle.useCase';
+import { FindMoviesByRating } from '@modules/movies/useCases/findMoviesByRating/findMoviesByRating.useCase';
 
 export const createMovieUseCase = new CreateMovie(
   new MoviesRepositoryImplementations(),
@@ -18,5 +19,8 @@ export const findMovieByTitleUseCase = new FindMovieByTitle(
   new MoviesRepositoryImplementations(),
 );
 export const deleteMovieByIdUseCase = new DeleteMovie(
+  new MoviesRepositoryImplementations(),
+);
+export const findMoviesByRatingUseCase = new FindMoviesByRating(
   new MoviesRepositoryImplementations(),
 );
