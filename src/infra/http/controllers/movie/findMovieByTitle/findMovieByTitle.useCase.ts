@@ -4,11 +4,11 @@ import { FindMoviesByTitlePresenter } from '@modules/movies/presenters/findMovie
 import { Controller } from '@shared/core/modules/Controller';
 import { ErrorPresenter } from '@shared/presenters/Error';
 import { Request, Response } from 'express';
-import { findMovieByIdQuerySchema } from 'src/schemas/movie/findMovieByTitle.schema';
+import { findMovieByTitleQuerySchema } from 'src/schemas/movie/findMovieByTitle.schema';
 
 export class FindMovieByTitle extends Controller {
   async handle(req: Request, res: Response): Promise<Response> {
-    const { title } = findMovieByIdQuerySchema.parse(req.query);
+    const { title } = findMovieByTitleQuerySchema.parse(req.query);
     const response = await findMovieByTitleUseCase.execute({ title });
 
     if (response.isLeft()) {
