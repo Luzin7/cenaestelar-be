@@ -6,6 +6,7 @@ export class FindMoviesPresenter {
       movies: movies.map((movie) => ({
         id: movie.id,
         title: movie.title,
+        shortDescription: movie.shortDescription,
         poster: movie.poster,
         banner: movie.banner,
       })),
