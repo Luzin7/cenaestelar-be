@@ -1,4 +1,4 @@
-import { OutputMovieDto } from '../repositories/contracts/movie.dto';
+import { OutputMovieDto } from '../dtos/movie.dto';
 
 export class FindMoviesByRatingPresenter {
   static toHttp(movies: OutputMovieDto[]) {

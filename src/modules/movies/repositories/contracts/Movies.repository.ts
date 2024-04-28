@@ -1,5 +1,5 @@
+import { OutputMovieDto } from '../../dtos/movie.dto';
 import { Movie } from '../../entities/Movie';
-import { OutputMovieDto } from './movie.dto';
 
 export abstract class MoviesRepository {
   abstract create(movie: Movie): Promise<void>;

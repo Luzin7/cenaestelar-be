@@ -1,8 +1,11 @@
 import { right } from '@shared/core/errors/Either';
 import { UseCase } from '@shared/core/modules/UseCase';
+import {
+  InputCreateMovieDto,
+  OutputCreateMovieDto,
+} from '../../dtos/createMovie.dto';
 import { Movie } from '../../entities/Movie';
 import { MoviesRepository } from '../../repositories/contracts/Movies.repository';
-import { InputCreateMovieDto, OutputCreateMovieDto } from './createMovie.dto';
 
 export class CreateMovie extends UseCase<
   InputCreateMovieDto,
@@ -21,6 +24,7 @@ export class CreateMovie extends UseCase<
     media,
     poster,
     rating,
+    globalRating,
     releaseDate,
     shortDescription,
     title,
@@ -30,7 +34,8 @@ export class CreateMovie extends UseCase<
       poster,
       media,
       banner,
-      rating,
+      rating: (Number(rating) / 2).toString(),
+      globalRating,
       shortDescription,
       description,
       releaseDate,

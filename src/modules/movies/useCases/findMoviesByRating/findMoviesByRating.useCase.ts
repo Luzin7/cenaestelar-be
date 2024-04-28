@@ -1,11 +1,11 @@
-import { left, right } from '@shared/core/errors/Either';
-import { MoviesRepository } from '@modules/movies/repositories/contracts/Movies.repository';
 import { MovieNotFoundError } from '@modules/movies/errors/movieNotFound.error';
+import { MoviesRepository } from '@modules/movies/repositories/contracts/Movies.repository';
+import { left, right } from '@shared/core/errors/Either';
 import { UseCase } from '@shared/core/modules/UseCase';
 import {
   InputFindMovieByRatingDto,
   OutputFindMovieByRatingDto,
-} from './findMoviesByRating.dto';
+} from '../../dtos/findMoviesByRating.dto';
 
 export class FindMoviesByRating extends UseCase<
   InputFindMovieByRatingDto,

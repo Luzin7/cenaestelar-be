@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
 import { findMoviesByRatingUseCase } from '@infra/implementations/movies';
 import { statusCodeMapper } from '@infra/statusCode/statusCodeMapper';
 import { FindMoviesByRatingPresenter } from '@modules/movies/presenters/findMoviesByRating.presenter';
 import { Controller } from '@shared/core/modules/Controller';
 import { ErrorPresenter } from '@shared/presenters/Error';
+import { Request, Response } from 'express';
 import { findMoviesByRatingBodySchema } from 'src/schemas/movie/findMoviesByRating.schema';
 
 export class FindMoviesByRating extends Controller {

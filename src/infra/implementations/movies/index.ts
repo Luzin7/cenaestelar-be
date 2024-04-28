@@ -1,4 +1,4 @@
-import { MoviesRepositoryImplementations } from '@infra/gateway/database/movie/Movie.repository';
+import { MoviesRepositoryImplementations } from '@infra/database/movie/Movie.repository';
 import { CreateMovie } from '@modules/movies/useCases/createMovie/createMovie.useCase';
 import { DeleteMovie } from '@modules/movies/useCases/deleteMovie/deleteMovie.useCase';
 import { FindAllMovies } from '@modules/movies/useCases/findAllMovies/findAll.useCase';

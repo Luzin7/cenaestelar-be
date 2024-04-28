@@ -5,7 +5,7 @@ import { UseCase } from '@shared/core/modules/UseCase';
 import {
   InputDeleteMovieDto,
   OutputDeleteMovieDto,
-} from './deleteMovie.useCase.dto';
+} from '../../dtos/deleteMovie.useCase.dto';
 
 export class DeleteMovie extends UseCase<
   InputDeleteMovieDto,

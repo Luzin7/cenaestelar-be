@@ -1,4 +1,4 @@
-import { OutputMovieDto } from '../repositories/contracts/movie.dto';
+import { OutputMovieDto } from '../dtos/movie.dto';
 
 export class FindMovieByIdPresenter {
   static toHttp(movie: OutputMovieDto) {
@@ -10,6 +10,7 @@ export class FindMovieByIdPresenter {
         media: movie.media,
         banner: movie.banner,
         rating: movie.rating,
+        globalRating: movie.globalRating,
         shortDescription: movie.shortDescription,
         description: movie.description,
         releaseDate: movie.releaseDate,
