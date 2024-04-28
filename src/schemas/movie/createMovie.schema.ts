@@ -4,6 +4,7 @@ export const createMovieBodySchema = z.object({
   title: z.string(),
   releaseDate: z.string(),
   rating: z.string(),
+  globalRating: z.string(),
   genres: z.array(
     z.object({
       id: z.number(),

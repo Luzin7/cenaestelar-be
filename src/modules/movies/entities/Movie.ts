@@ -13,6 +13,7 @@ export class Movie extends Entity<ContentProps> {
       description: props.description,
       poster: props.poster,
       rating: props.rating,
+      globalRating: props.globalRating,
       releaseDate: props.releaseDate,
       shortDescription: props.shortDescription,
     };
@@ -56,6 +57,10 @@ export class Movie extends Entity<ContentProps> {
 
   get rating() {
     return this.props.rating;
+  }
+
+  get globalRating() {
+    return this.props.globalRating;
   }
 
   get releaseDate() {

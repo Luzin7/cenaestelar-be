@@ -1,8 +1,8 @@
 import { Movie } from '@modules/movies/entities/Movie';
 import { InMemoryMoviesRepository } from '@test/modules/movies/repositories/InMemoryMovies.repository';
 import { describe, expect, it } from 'vitest';
+import { InputDeleteMovieDto } from '../../dtos/deleteMovie.useCase.dto';
 import { DeleteMovie } from './deleteMovie.useCase';
-import { InputDeleteMovieDto } from './deleteMovie.useCase.dto';
 
 describe('Delete movie by id', () => {
   const moviesRepository = new InMemoryMoviesRepository();
@@ -14,10 +14,11 @@ describe('Delete movie by id', () => {
       media: 'test media',
       banner: 'test banner',
       rating: 'test rating',
+      globalRating: 'global rating',
       shortDescription: 'test short description',
       description: 'test description',
       releaseDate: 'test release date',
-      genres: ['test genres'],
+      genres: [{ id: 1, name: 'test' }],
       cast: ['test cast'],
       directors: ['test'],
     });

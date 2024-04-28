@@ -8,19 +8,26 @@ import { findMovieByIdBodySchema } from 'src/schemas/movie/findMovieById.schema'
 
 export class FindMovieById extends Controller {
   async handle(req: Request, res: Response): Promise<Response> {
-    const { id } = findMovieByIdBodySchema.parse(req.params);
-    const response = await findMovieByIdUseCase.execute({ id });
+    try {
+      const { id } = findMovieByIdBodySchema.parse(req.params);
 
-    if (response.isLeft()) {
-      const error = response.value;
+      const response = await findMovieByIdUseCase.execute({ id });
 
-      return ErrorPresenter.hadleError(req, res, error);
+      if (response.isLeft()) {
+        const error = response.value;
+        return ErrorPresenter.hadleError(req, res, error);
+      }
+
+      const { movie } = response.value;
+
+      return res
+        .status(statusCodeMapper.OK)
+        .json(FindMovieByIdPresenter.toHttp(movie));
+    } catch (error) {
+      return ErrorPresenter.hadleError(req, res, {
+        message: 'Bad request',
+        statusCode: statusCodeMapper.BadRequest,
+      });
     }
-
-    const { movie } = response.value;
-
-    return res
-      .status(statusCodeMapper.OK)
-      .json(FindMovieByIdPresenter.toHttp(movie));
   }
 }

@@ -1,6 +1,6 @@
 import { Either } from '@shared/core/errors/Either';
-import { MovieNotFoundError } from '../../errors/movieNotFound.error';
-import { OutputMovieDto } from '../../repositories/contracts/movie.dto';
+import { MovieNotFoundError } from '../errors/movieNotFound.error';
+import { OutputMovieDto } from './movie.dto';
 
 export type InputFindMovieByIdDto = {
   id: string;

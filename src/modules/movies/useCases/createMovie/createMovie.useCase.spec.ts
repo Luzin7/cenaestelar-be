@@ -1,6 +1,6 @@
 import { InMemoryMoviesRepository } from '@test/modules/movies/repositories/InMemoryMovies.repository';
 import { describe, expect, it } from 'vitest';
-import { InputCreateMovieDto } from './createMovie.dto';
+import { InputCreateMovieDto } from '../../dtos/createMovie.dto';
 import { CreateMovie } from './createMovie.useCase';
 
 describe('Create movie', () => {
@@ -13,10 +13,11 @@ describe('Create movie', () => {
       media: 'media',
       banner: 'banner',
       rating: 'rating',
+      globalRating: 'globalRating',
       shortDescription: 'shortDescription',
       description: 'description',
       releaseDate: 'releaseDate',
-      genres: ['genres'],
+      genres: [{ id: 1, name: 'genre' }],
       cast: ['cast'],
       directors: ['directors'],
     };

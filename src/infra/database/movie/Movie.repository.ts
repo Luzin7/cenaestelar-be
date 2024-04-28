@@ -1,6 +1,6 @@
+import { OutputMovieDto } from '@modules/movies/dtos/movie.dto';
 import { Movie } from '@modules/movies/entities/Movie';
 import { MoviesRepository } from '@modules/movies/repositories/contracts/Movies.repository';
-import { OutputMovieDto } from '@modules/movies/repositories/contracts/movie.dto';
 import { prisma } from '../connection';
 import { MoviesPrismaMapper } from './moviePrismaMapper';
 
@@ -22,7 +22,7 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
       },
     });
 
-    if (!movie) {
+    if (movie === null) {
       return null;
     }
 
@@ -35,9 +35,6 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
         genres: {
           hasSome: genre,
         },
-      },
-      orderBy: {
-        genres: 'desc',
       },
     });
 
@@ -55,6 +52,10 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
         genres: 'desc',
       },
     });
+
+    if (movies.length === 0) {
+      return null;
+    }
 
     return movies.map(MoviesPrismaMapper.toEntity);
   }
@@ -75,7 +76,9 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
   async findByRating(rating: string): Promise<OutputMovieDto[]> {
     const movies = await prisma.movies.findMany({
       where: {
-        rating,
+        rating: {
+          gte: rating,
+        },
       },
       orderBy: {
         genres: 'desc',

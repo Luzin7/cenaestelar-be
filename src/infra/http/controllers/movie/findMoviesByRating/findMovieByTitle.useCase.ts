@@ -1,15 +1,15 @@
-import { findMovieByTitleUseCase } from '@infra/implementations/movies';
+import { findMoviesByRatingUseCase } from '@infra/implementations/movies';
 import { statusCodeMapper } from '@infra/statusCode/statusCodeMapper';
-import { FindMoviesByTitlePresenter } from '@modules/movies/presenters/findMoviesByTitle.presenter';
+import { FindMoviesByRatingPresenter } from '@modules/movies/presenters/findMoviesByRating.presenter';
 import { Controller } from '@shared/core/modules/Controller';
 import { ErrorPresenter } from '@shared/presenters/Error';
 import { Request, Response } from 'express';
-import { findMovieByTitleQuerySchema } from 'src/schemas/movie/findMovieByTitle.schema';
+import { findMoviesByRatingBodySchema } from 'src/schemas/movie/findMoviesByRating.schema';
 
-export class FindMovieByTitle extends Controller {
+export class FindMoviesByRating extends Controller {
   async handle(req: Request, res: Response): Promise<Response> {
-    const { title } = findMovieByTitleQuerySchema.parse(req.query);
-    const response = await findMovieByTitleUseCase.execute({ title });
+    const { rating } = findMoviesByRatingBodySchema.parse(req.body);
+    const response = await findMoviesByRatingUseCase.execute({ rating });
 
     if (response.isLeft()) {
       const error = response.value;
@@ -21,6 +21,6 @@ export class FindMovieByTitle extends Controller {
 
     return res
       .status(statusCodeMapper.OK)
-      .json(FindMoviesByTitlePresenter.toHttp(movies));
+      .json(FindMoviesByRatingPresenter.toHttp(movies));
   }
 }

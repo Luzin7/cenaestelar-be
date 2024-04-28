@@ -1,5 +1,5 @@
+import { OutputMovieDto } from '../../dtos/movie.dto';
 import { Movie } from '../../entities/Movie';
-import { OutputMovieDto } from './movie.dto';
 
 export abstract class MoviesRepository {
   abstract create(movie: Movie): Promise<void>;
@@ -8,7 +8,7 @@ export abstract class MoviesRepository {
   abstract findByGenre(genres: string[]): Promise<OutputMovieDto[]>;
   abstract findByTitle(title: string): Promise<OutputMovieDto[] | null>;
   abstract findByReleaseDate(releaseDate: string): Promise<OutputMovieDto[]>;
-  abstract findByRating(rating: string): Promise<OutputMovieDto[]>;
+  abstract findByRating(rating: string): Promise<OutputMovieDto[] | null>;
   abstract update(movie: Movie): Promise<void>;
   abstract delete(id: string): Promise<void>;
 }

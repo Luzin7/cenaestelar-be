@@ -1,11 +1,11 @@
+import { MovieNotFoundError } from '@modules/movies/errors/movieNotFound.error';
 import { left, right } from '@shared/core/errors/Either';
 import { UseCase } from '@shared/core/modules/UseCase';
-import { MovieNotFoundError } from '../../errors/movieNotFound.error';
-import { MoviesRepository } from '../../repositories/contracts/Movies.repository';
 import {
   InputFindMovieByTitleDto,
   OutputFindMovieByTitleDto,
-} from './findMovieByTitle.dto';
+} from '../../dtos/findMovieByTitle.dto';
+import { MoviesRepository } from '../../repositories/contracts/Movies.repository';
 
 export class FindMovieByTitle extends UseCase<
   InputFindMovieByTitleDto,
@@ -20,7 +20,10 @@ export class FindMovieByTitle extends UseCase<
   }: InputFindMovieByTitleDto): Promise<OutputFindMovieByTitleDto> {
     const movies = await this.moviesRepository.findByTitle(title);
 
-    if (!movies) {
+    console.log(movies);
+
+    if (movies === null) {
+      console.log('No movies found');
       return left(new MovieNotFoundError());
     }
 

@@ -1,4 +1,4 @@
-import { OutputMovieDto } from '../repositories/contracts/movie.dto';
+import { OutputMovieDto } from '../dtos/movie.dto';
 
 export class FindMoviesPresenter {
   static toHttp(movies: OutputMovieDto[]) {
@@ -7,15 +7,7 @@ export class FindMoviesPresenter {
         id: movie.id,
         title: movie.title,
         poster: movie.poster,
-        media: movie.media,
         banner: movie.banner,
-        rating: movie.rating,
-        shortDescription: movie.shortDescription,
-        description: movie.description,
-        releaseDate: movie.releaseDate,
-        genres: movie.genres,
-        cast: movie.cast,
-        directors: movie.directors,
       })),
     };
   }

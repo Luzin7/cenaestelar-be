@@ -19,6 +19,7 @@ export class CreateMovie implements Controller {
       releaseDate,
       shortDescription,
       title,
+      globalRating,
     } = createMovieBodySchema.parse(req.body);
 
     const response = await createMovieUseCase.execute({
@@ -30,6 +31,7 @@ export class CreateMovie implements Controller {
       media,
       poster,
       rating,
+      globalRating,
       releaseDate,
       shortDescription,
       title,

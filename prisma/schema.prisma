@@ -15,6 +15,7 @@ model Movies {
   banner           Json
   shortDescription String   @map("short_description")
   description      String
+  globaRating      String   @map("global_rating")
   rating           String
   releaseDate      String   @map("release_date")
   genres           Json[]
@@ -32,6 +33,7 @@ model Series {
   banner           String
   shortDescription String   @map("short_description")
   description      String
+  globaRating      String   @map("global_rating")
   rating           String
   releaseDate      String   @map("release_date")
   genres           String[]
