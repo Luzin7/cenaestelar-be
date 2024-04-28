@@ -1,7 +1,7 @@
 import { InMemoryMoviesRepository } from '@test/modules/movies/repositories/InMemoryMovies.repository';
 import { describe, expect, it } from 'vitest';
+import { InputFindMovieByIdDto } from '../../dtos/findMovieById.dto';
 import { Movie } from '../../entities/Movie';
-import { InputFindMovieByIdDto } from './findMovieById.dto';
 import { FindMovieById } from './findMovieById.useCase';
 
 describe('Find Movie By Id', () => {
@@ -14,10 +14,11 @@ describe('Find Movie By Id', () => {
       media: 'test media',
       banner: 'test banner',
       rating: 'test rating',
+      globalRating: 'global rating',
       shortDescription: 'test short description',
       description: 'test description',
       releaseDate: 'test release date',
-      genres: ['test genres'],
+      genres: [{ id: 1, name: 'test' }],
       cast: ['test cast'],
       directors: ['test'],
     });
