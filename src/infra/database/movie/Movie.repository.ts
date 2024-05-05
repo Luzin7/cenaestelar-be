@@ -29,6 +29,7 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
     return MoviesPrismaMapper.toEntity(movie);
   }
 
+  // TODO: Criar controlador, rota e teste
   async findByGenre(genre: string[]): Promise<OutputMovieDto[]> {
     const movies = await prisma.movies.findMany({
       where: {
@@ -41,6 +42,7 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
     return movies.map(MoviesPrismaMapper.toEntity);
   }
 
+  // TODO: Criar teste e melhorar sistema de busca
   async findByTitle(title: string): Promise<OutputMovieDto[] | null> {
     const movies = await prisma.movies.findMany({
       where: {
@@ -60,6 +62,7 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
     return movies.map(MoviesPrismaMapper.toEntity);
   }
 
+  // TODO: Criar controlador, rota e teste
   async findByReleaseDate(releaseDate: string): Promise<OutputMovieDto[]> {
     const movies = await prisma.movies.findMany({
       where: {
@@ -88,10 +91,10 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
     return movies.map(MoviesPrismaMapper.toEntity);
   }
 
-  async update(movie: Movie): Promise<void> {
+  async update(id: string, movie: Movie): Promise<void> {
     await prisma.movies.update({
       where: {
-        id: movie.id,
+        id,
       },
       data: MoviesPrismaMapper.toPrisma(movie),
     });
