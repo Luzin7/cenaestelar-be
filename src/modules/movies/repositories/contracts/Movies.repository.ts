@@ -9,6 +9,6 @@ export abstract class MoviesRepository {
   abstract findByTitle(title: string): Promise<OutputMovieDto[] | null>;
   abstract findByReleaseDate(releaseDate: string): Promise<OutputMovieDto[]>;
   abstract findByRating(rating: string): Promise<OutputMovieDto[] | null>;
-  abstract update(movie: Movie): Promise<void>;
+  abstract update(id: string, movie: Movie): Promise<void>;
   abstract delete(id: string): Promise<void>;
 }
