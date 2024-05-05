@@ -20,10 +20,7 @@ export class FindMovieByTitle extends UseCase<
   }: InputFindMovieByTitleDto): Promise<OutputFindMovieByTitleDto> {
     const movies = await this.moviesRepository.findByTitle(title);
 
-    console.log(movies);
-
     if (movies === null) {
-      console.log('No movies found');
       return left(new MovieNotFoundError());
     }
 
