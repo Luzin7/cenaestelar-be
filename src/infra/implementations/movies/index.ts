@@ -5,8 +5,12 @@ import { FindAllMovies } from '@modules/movies/useCases/findAllMovies/findAll.us
 import { FindMovieById } from '@modules/movies/useCases/findMovieById/findMovieById.useCase';
 import { FindMovieByTitle } from '@modules/movies/useCases/findMovieByTitle/findMovieByTitle.useCase';
 import { FindMoviesByRating } from '@modules/movies/useCases/findMoviesByRating/findMoviesByRating.useCase';
+import { UpdateMovie } from '@modules/movies/useCases/updateMovie/updateMovie.useCase';
 
 export const createMovieUseCase = new CreateMovie(
+  new MoviesRepositoryImplementations(),
+);
+export const updateMovieUseCase = new UpdateMovie(
   new MoviesRepositoryImplementations(),
 );
 export const findALlMoviesUseCase = new FindAllMovies(
