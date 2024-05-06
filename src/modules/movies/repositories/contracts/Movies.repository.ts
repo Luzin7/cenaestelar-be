@@ -4,6 +4,8 @@ import { Movie } from '../../entities/Movie';
 export abstract class MoviesRepository {
   abstract create(movie: Movie): Promise<void>;
   abstract findAll(): Promise<OutputMovieDto[]>;
+  abstract findBestMoviesSeen(): Promise<OutputMovieDto[]>;
+  abstract findHighLights(): Promise<OutputMovieDto[]>;
   abstract findById(id: string): Promise<OutputMovieDto | null>;
   abstract findByGenre(genres: string[]): Promise<OutputMovieDto[]>;
   abstract findByTitle(title: string): Promise<OutputMovieDto[] | null>;
