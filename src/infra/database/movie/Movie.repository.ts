@@ -15,6 +15,25 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
     return movies.map(MoviesPrismaMapper.toEntity);
   }
 
+  // TODO: teste
+  async findBestMoviesSeen(): Promise<OutputMovieDto[]> {
+    const movies = await prisma.movies.findMany({
+      where: {
+        rating: {
+          lte: '5',
+        },
+      },
+      take: 7,
+    });
+
+    return movies.map(MoviesPrismaMapper.toEntity);
+  }
+
+  // TODO: Criar controlador, rota e teste
+  findHighLights(): Promise<OutputMovieDto[]> {
+    throw new Error('Method not implemented.');
+  }
+
   async findById(id: string): Promise<OutputMovieDto | null> {
     const movie = await prisma.movies.findUnique({
       where: {
