@@ -1,6 +1,10 @@
 import { OutputMovieDto } from '../../dtos/movie.dto';
 import { Movie } from '../../entities/Movie';
 
+/**
+ * The `MoviesRepository` class defines the interface for interacting with a repository of movies.
+ * It provides methods to perform CRUD operations and search functionalities related to movies.
+ */
 export abstract class MoviesRepository {
   abstract create(movie: Movie): Promise<void>;
   abstract findAll(): Promise<OutputMovieDto[]>;

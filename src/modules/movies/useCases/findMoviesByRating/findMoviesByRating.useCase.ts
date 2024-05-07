@@ -7,6 +7,13 @@ import {
   OutputFindMovieByRatingDto,
 } from '../../dtos/findMoviesByRating.dto';
 
+/**
+ * The `FindMoviesByRating` class represents a use case for retrieving movies by their rating.
+ * It extends the `UseCase` class and implements the logic to fetch movies from the repository based on their rating.
+ * Upon execution, it utilizes the injected `moviesRepository` to retrieve the movies.
+ * If movies matching the rating are found, it returns an `OutputFindMovieByRatingDto` containing the movie details.
+ * If no movies are found, it returns a `MovieNotFoundError`.
+ */
 export class FindMoviesByRating extends UseCase<
   InputFindMovieByRatingDto,
   OutputFindMovieByRatingDto

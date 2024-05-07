@@ -1,6 +1,14 @@
 import { OutputMovieDto } from '../dtos/movie.dto';
 
+/**
+ * The `FindMovieByIdPresenter` class is responsible for presenting a single movie by its ID in a format suitable for HTTP responses.
+ */
 export class FindMovieByIdPresenter {
+  /**
+   * Converts an `OutputMovieDto` object into an HTTP-friendly format, containing detailed information about the movie.
+   * @param movie An `OutputMovieDto` object representing the movie to be presented.
+   * @returns An object containing detailed information about the movie in an HTTP-friendly format.
+   */
   static toHttp(movie: OutputMovieDto) {
     return {
       movie: {

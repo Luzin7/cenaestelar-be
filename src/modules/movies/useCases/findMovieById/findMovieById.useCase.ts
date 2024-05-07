@@ -7,6 +7,13 @@ import {
 import { MovieNotFoundError } from '../../errors/movieNotFound.error';
 import { MoviesRepository } from '../../repositories/contracts/Movies.repository';
 
+/**
+ * The `FindMovieById` class represents a use case for retrieving a movie by its ID.
+ * It extends the `UseCase` class and implements the logic to fetch a movie from the repository based on its ID.
+ * Upon execution, it utilizes the injected `moviesRepository` to retrieve the movie.
+ * If the movie is found, it returns an `OutputFindMovieByIdDto` containing the movie details.
+ * If the movie is not found, it returns a `MovieNotFoundError`.
+ */
 export class FindMovieById extends UseCase<
   InputFindMovieByIdDto,
   OutputFindMovieByIdDto
