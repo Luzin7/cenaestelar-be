@@ -1,130 +1,200 @@
-# Cena estelar API
+# Documentação da API
 
-Ainda to bolando a desc
+Esta API oferece endpoints para gerenciar filmes.
 
-## Documentação da API
+## Rotas
 
-### Retorna todos os itens
+| Método | Rota                    | Descrição                                                  |
+| ------ | ----------------------- | ---------------------------------------------------------- |
+| GET    | /movies                 | Retorna uma lista de todos os filmes cadastrados.           |
+| GET    | /movies?title={title}  | Retorna filmes com títulos que correspondem ao parâmetro de consulta. |
+| GET    | /movies/:id             | Retorna o filme correspondente ao ID fornecido.            |
+| GET    | /movies/top             | Retorna uma lista dos melhores filmes classificados.       |
+| POST   | /movies                 | Adiciona um novo filme com base nos dados fornecidos.     |
+| PUT    | /movies/:id             | Atualiza os detalhes de um filme existente com base no ID fornecido. |
+| DELETE | /movies/:id             | Exclui um filme com base no ID fornecido.                  |
 
-```http
-  GET /movies
-```
+## Controladores
 
-```http
-  GET /series
-```
+### CreateMovie
 
-### Procurar conteúdos por título
+Responsável por criar um novo filme.
 
-```http
-  GET /{contentType}?query={contentTitle}
+#### Corpo da Requisição
 
-  ex: /movies?query=oppenheimer
-```
+| Campo            | Tipo            | Descrição                                                  |
+| ---------------- | --------------- | ---------------------------------------------------------- |
+| banner           | string          | URL do banner do filme.                                    |
+| cast             | string[]        | Array dos membros do elenco.                               |
+| description      | string          | Descrição detalhada do filme.                              |
+| directors        | string[]        | Array dos diretores do filme.                              |
+| genres           | string[]        | Array dos gêneros do filme.                               |
+| media            | string / boolean| URL da mídia (trailer do Youtube ou outros) em que o filme está disponível. |
+| poster           | string          | URL do pôster do filme.                                    |
+| rating           | string          | Avaliação do filme (0-10 que será convertido para 0-5).    |
+| releaseDate      | string          | Data de lançamento do filme.                               |
+| shortDescription | string          | Resumo breve ou tagline do filme.                          |
+| title            | string          | Título do filme.                                           |
+| globalRating     | string          | Pontuação de classificação global do filme.                |
 
-| Método  | Tipo     | Descrição                                                          |
-| :------ | :------- | :----------------------------------------------------------------- |
-| `Query` | `string` | **Obrigatório**. O título do conteúdo que o usuário quer encontrar |
+#### Resposta de Sucesso
 
-### Filtrar conteúdo por gênero
+Status: 201 Created
 
-```http
-  GET /{contentType}?filter=genres
+#### Resposta de Erro
 
-  ex: /movies?filter=genres
-```
+Status: 400 Bad Request
 
-conteúdo do corpo:
+### DeleteMovieById
 
-```json
-ex:
-{
-  "genres": ["ryan", "gosling"],
-}
-```
+Responsável por excluir um filme pelo ID.
 
-| Método | Tipo   | Descrição                                              |
-| :----- | :----- | :----------------------------------------------------- |
-| `Body` | `JSON` | **Obrigatório**. O gereno do conteúdo a ser procurado. |
+#### Parâmetros da Requisição
 
-### Filtrar conteúdo por data de lançamento
+| Campo | Tipo   | Descrição                           |
+| ----- | ------ | ----------------------------------- |
+| id    | string | ID do filme a ser excluído.         |
 
-```http
-  GET /{contentType}?filter=release
+#### Resposta de Sucesso
 
-  ex: /movies?filter=release
-```
+Status: 204 No Content
 
-conteúdo do corpo:
+#### Resposta de Erro
 
-```json
-ex:
-{
-  "release": "2222",
-}
-```
+Status: 400 Bad Request
 
-| Método | Tipo   | Descrição                                              |
-| :----- | :----- | :----------------------------------------------------- |
-| `Body` | `JSON` | **Obrigatório**. O gereno do conteúdo a ser procurado. |
+### FindAllMovies
 
-### Filtrar conteúdos por ID
+Responsável por recuperar todos os filmes.
 
-```http
-  GET /{contentType}/id
+#### Resposta de Sucesso
 
-  ex: /movies/ewUbr40sddWoKps2
-```
+Status: 200 OK
 
-| Método   | Tipo     | Descrição                                                      |
-| :------- | :------- | :------------------------------------------------------------- |
-| `Params` | `string` | **Obrigatório**. O ID do conteúdo que o usuário quer encontrar |
+| Campo  | Tipo    | Descrição                       |
+| ------ | ------- | ------------------------------- |
+| movies | Movie[] | Array contendo todos os filmes. |
 
-### Adicionar um novo conteúdo
+#### Resposta de Erro
 
-```http
-  POST /movies
+Status: 400 Bad Request
 
-  ex: /movies
-```
+### FindBestMoviesSeen
 
-conteúdo do corpo:
+Responsável por recuperar os melhores filmes vistos.
 
-```json
-ex:
-{
-  "title": "Filme Show",
-  "poster": "https://images.alphacoders.com/808/808916.jpg",
-  "media": "https://images.alphacoders.com/808/808916.jpg",
-  "banner": "https://images.alphacoders.com/808/808916.jpg",
-  "rating": "4.5",
-  "shortDescription": "Tagline show do filme.",
-  "description": "Crítica do filme que claramente vai fazer toda a diferença na vida de quem acessar o site.",
-  "releaseDate": "01-01-0001",
-  "genres": ["ryan gosling"],
-  "cast": [
-    "ryan gosling",
-    "literalmente eu"
-  ],
-  "directors": [
-    "ryan gosling",
-    "literalmente eu"
-  ]
-}
-```
+#### Resposta de Sucesso
 
-| Método | Tipo   | Descrição                                                                   |
-| :----- | :----- | :-------------------------------------------------------------------------- |
-| `Body` | `JSON` | **Obrigatório**. O conteúdo do filme para ser adicionado ao banco de dados. |
+Status: 200 OK
 
-### Deletar conteúdo por ID
+| Campo  | Tipo    | Descrição                               |
+| ------ | ------- | --------------------------------------- |
+| movies | Movie[] | Array contendo os melhores filmes vistos. |
 
-```http
-  DELETE /{contentType}/id
+#### Resposta de Erro
 
-  ex: /movies/ewUbr40sWoKps221
-```
+Status: 400 Bad Request
 
-| Método   | Tipo     | Descrição                                           |
-| :------- | :------- | :-------------------------------------------------- |
-| `Params` | `string` | **Obrigatório**. O ID do conteúdo que será deletado |
+### FindMovieById
+
+Responsável por recuperar um filme pelo ID.
+
+#### Parâmetros da Requisição
+
+| Campo | Tipo   | Descrição                           |
+| ----- | ------ | ----------------------------------- |
+| id    | string | ID do filme a ser recuperado.       |
+
+#### Resposta de Sucesso
+
+Status: 200 OK
+
+| Campo | Tipo | Descrição                      |
+| ----- | ---- | ------------------------------ |
+| movie | Movie| Filme recuperado pelo ID.     |
+
+#### Resposta de Erro
+
+Status: 400 Bad Request
+
+### FindMovieByTitle
+
+Responsável por recuperar filmes pelo título.
+
+#### Parâmetros da Requisição
+
+| Campo | Tipo   | Descrição                             |
+| ----- | ------ | ------------------------------------- |
+| title | string | Título do filme a ser recuperado.     |
+
+#### Resposta de Sucesso
+
+Status: 200 OK
+
+| Campo  | Tipo    | Descrição                               |
+| ------ | ------- | --------------------------------------- |
+| movies | Movie[] | Array contendo filmes com o título fornecido. |
+
+#### Resposta de Erro
+
+Status: 400 Bad Request
+
+### FindMoviesByRating
+
+Responsável por recuperar filmes pela avaliação.
+
+#### Corpo da Requisição
+
+| Campo  | Tipo   | Descrição                             |
+| ------ | ------ | ------------------------------------- |
+| rating | string | Avaliação dos filmes a serem recuperados. |
+
+#### Resposta de Sucesso
+
+Status: 200 OK
+
+| Campo  | Tipo    | Descrição                               |
+| ------ | ------- | --------------------------------------- |
+| movies | Movie[] | Array contendo filmes com a avaliação fornecida. |
+
+#### Resposta de Erro
+
+Status: 400 Bad Request
+
+### UpdateMovie
+
+Responsável por atualizar um filme pelo ID.
+
+#### Parâmetros da Requisição
+
+| Campo | Tipo   | Descrição                               |
+| ----- | ------ | --------------------------------------- |
+| id    | string | ID do filme a ser atualizado.           |
+
+#### Corpo da Requisição
+
+| Campo            | Tipo   | Descrição                               |
+| ---------------- | ------ | --------------------------------------- |
+| banner           | string | URL do banner do filme.                 |
+| cast             | string[]| Array dos membros do elenco.            |
+| description      | string | Descrição detalhada do filme.           |
+| directors        | string[]| Array dos diretores do filme.           |
+| genres           | string[]| Array dos gêneros do filme.             |
+| media            | string | URL da mídia (trailer do Youtube ou outros) em que o filme está disponível. |
+| poster           | string | URL do pôster do filme.                 |
+| rating           | string | Avaliação do filme (0-10 que será convertido para 0-5). |
+| releaseDate      | string | Data de lançamento do filme.            |
+| shortDescription | string | Resumo breve ou tagline do filme.       |
+| title            | string | Título do filme.                        |
+| globalRating     | string | Pontuação de classificação global do filme. |
+
+#### Resposta de Sucesso
+
+Status: 204 No Content
+
+#### Resposta de Erro
+
+Status: 400 Bad Request
+
+
+
