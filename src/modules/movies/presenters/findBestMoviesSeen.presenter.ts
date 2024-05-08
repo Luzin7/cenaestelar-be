@@ -13,6 +13,7 @@ export class FindBestMoviesSeenPresenter {
     return {
       movies: movies.map((movie) => ({
         id: movie.id,
+        title: movie.title,
         rating: movie.rating,
         poster: movie.poster,
       })),
