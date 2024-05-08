@@ -23,15 +23,25 @@ export class MoviesRepositoryImplementations implements MoviesRepository {
           lte: '5',
         },
       },
-      take: 7,
+      orderBy: {
+        rating: 'desc',
+      },
+      take: 10,
     });
 
     return movies.map(MoviesPrismaMapper.toEntity);
   }
 
-  // TODO: Criar controlador, rota e teste
-  findHighLights(): Promise<OutputMovieDto[]> {
-    throw new Error('Method not implemented.');
+  // TODO: teste
+  async findHighLights(): Promise<OutputMovieDto[]> {
+    const movies = await prisma.movies.findMany({
+      orderBy: {
+        releaseDate: 'desc',
+      },
+      take: 5,
+    });
+
+    return movies.map(MoviesPrismaMapper.toEntity);
   }
 
   async findById(id: string): Promise<OutputMovieDto | null> {
